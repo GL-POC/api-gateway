@@ -23,7 +23,7 @@ public class AddResponseHeaderFilter extends ZuulFilter {
 		RequestContext context = RequestContext.getCurrentContext();
 		HttpServletResponse response = context.getResponse();
 		response.addHeader("X-Application", UUID.randomUUID().toString());
-		log.info("header -> {}", response.getHeader("X-Foo"));
+		log.info("header -> {}", response.getHeader("X-Application"));
 		return null;
 	}
 

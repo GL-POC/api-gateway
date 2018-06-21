@@ -4,6 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.context.annotation.Bean;
+
+import io.sushil.kushwaha.filter.AddResponseHeaderFilter;
+import io.sushil.kushwaha.filter.ZuulLoggingFilter;
 
 @SpringBootApplication
 @EnableZuulProxy
@@ -14,8 +18,13 @@ public class ZuulApiGaewayApplication {
 		SpringApplication.run(ZuulApiGaewayApplication.class, args);
 	}
 	
-	/*@Bean
-	public AlwaysSampler defaultSampler() {
-		return new AlwaysSampler();
-	}*/
+	@Bean
+	public ZuulLoggingFilter defaultSampler() {
+		return new ZuulLoggingFilter();
+	}
+	
+	@Bean
+	public AddResponseHeaderFilter responseFilter() {
+		return new AddResponseHeaderFilter();
+	}
 }
